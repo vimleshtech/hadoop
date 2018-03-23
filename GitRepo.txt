@@ -1,0 +1,47 @@
+Git
+	GitHub
+
+
+---------------------
+1. github.com
+		-signup 
+
+https://github.com/vimleshtech/hadoop.git
+ 
+
+2. **Install Git on local system
+
+
+commands:
+
+git init   
+git add filename.extn
+git add -A    : add all files
+git status
+git log 
+git commit -m "message"
+git remote add alias path.git
+git push -u alias master
+
+
+red : 		untracked file 
+green :         tracked file 
+
+
+
+local files(in folder) -> add  -> add to stage -> commit (master) -> add to local repository -> push -> (remote)global repo/shared repo/cloud/hub 
+
+
+
+
+
+
+git clone https://github.com/vimleshtech/hadoop.git
+
+
+
+
+
+
+
+
