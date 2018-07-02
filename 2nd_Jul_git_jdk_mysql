@@ -1,0 +1,41 @@
+$apt-get install git
+$apt-get install default-jre
+$apt-get install mysql-server
+
+
+Example:
+	directory/folder:	local files
+		a.txt
+		b.txt
+		abc.docx
+		
+
+	Stage :
+		
+
+	Master Repository : local repository
+
+
+	GitHub/Cloud / Remote Repository:
+		https://github.com/vimleshtech/hadoop_learn.git
+	
+$git init 		--inialize the local repository
+$git status	--show status files and folder 
+$git add -A	-- add all files and folder to stage 
+$git add filname.txt
+$git add filname1.txt, filename2.txt
+$git commit -m "v.1"
+
+$git add conf.... add user 
+$git ad conf... add email
+
+--add alias of git hub repository 
+$git remote add <aliasname> https://github.com/vimleshtech/hadoop_learn.git
+$git push -u <aliasname> master
+
+
+--clone : download the the git repository from hub
+$git clone https://github.com/vimleshtech/hadoop_learn.git
+
+
+ 	
