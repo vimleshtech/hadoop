@@ -1,0 +1,69 @@
+Today's Topic
+=========================
+=========================
+
+
+Read and write operation from hdfs using python
+=================================
+Replication Configuration
+==================================
+Block Size Configuration
+====================================
+Pig Overview and setup 
+=======================================
+
+
+**Read and write operation from hdfs using python
+===================================================
+instal package : hdfs
+	pip install hdfs
+	
+
+import pandas as pd
+from hdfs import InsecureClient
+import os			# is inbuilt with python all version 
+
+
+n=['nitin','raman']
+g=['male','male']
+df = pd.DataFrame(data= {'name':n,'gender':g})
+
+
+
+client_hdfs = InsecureClient('http://' + os.environ['IP_HDFS'] + ':50070')
+			    'http:localhost:50070'
+			    'http:localhost:9000
+
+
+w =  client_hdfs.write('/user/hdfs/wiki/helloworld.csv', encoding = 'utf-8') 
+df.to_csv(w)
+
+or 
+
+
+# Writing Dataframe to hdfs
+with client_hdfs.write('/user/hdfs/wiki/helloworld.csv', encoding = 'utf-8') as 
+writer:
+    df.to_csv(writer)
+
+
+
+
+
+
+x = df.grupby()
+
+
+print x[:],x[1:]
+
+
+
+
+
+
+
+
+
+
+
+
