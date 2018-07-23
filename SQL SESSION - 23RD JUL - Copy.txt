@@ -1,0 +1,36 @@
+Today's Topic
+========================
+Function
+Union
+Join : 
+		-inner join : return common/matching rows
+		-outer join		: full outer join 
+				-left join
+				-right join 
+Subquery
+
+
+Function: is set of command/instructions which is reusable 	
+=================
+Text Function
+	left()		: 
+	right()
+	replace()
+	len()
+	substring()
+	upper()
+	lower()
+	charindex()
+	
+Date Function 
+	
+
+Union	: to merge two or more than two tables vertically 
+================
+-> table structure should be same 
+-> data type should be same , column should be in same sequence
+
+Types:
+	-union			: return unique rows
+	-union all		: return all rows 
+
