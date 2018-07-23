@@ -1,0 +1,170 @@
+select * from orders 
+--9905
+select * from backup_tbl
+--99
+
+-- union all 
+select * from orders 
+union all 
+select * from backup_tbl
+
+--union 
+select * from orders 
+union
+select * from backup_tbl
+
+--
+select [row id],[Customer Name] from Orders
+union 
+select [row id],[Customer Name] from backup_tbl
+
+
+
+---join 
+select * From employee_1
+insert into employee_1
+values(20,'divya','sinha','divya@gmail.com','female','active',getdate())
+
+select * from salary_1
+insert into salary_1
+values(210,55444,56666,455)
+
+sp_help salary_1
+
+--inner join  : return common rows
+select e.eid,e.email,e.fname,s.basic,s.hra,s.ta
+from employee_1 as e inner join salary_1 as s
+	on e.eid = s.employee_id
+
+--
+select e.eid,e.email,e.fname,s.basic,s.hra,s.ta
+from employee_1 as e  join salary_1 as s --default type is inner 
+	on e.eid = s.employee_id
+
+
+--left join  : return all rows from left table
+select e.eid,e.email,e.fname,s.basic,s.hra,s.ta
+from employee_1 as e left join salary_1 as s
+	on e.eid = s.employee_id
+
+--right join : return all rows from right table and matching from left table
+select e.eid,e.email,e.fname,s.basic,s.hra,s.ta
+from employee_1 as e right join salary_1 as s
+	on e.eid = s.employee_id
+
+--full outer join : all rows from both table table 
+select e.eid,e.email,e.fname,s.basic,s.hra,s.ta
+from employee_1 as e full outer join salary_1 as s
+	on e.eid = s.employee_id
+
+
+--
+select e.eid,e.email,e.fname,s.basic,s.hra,s.ta
+from employee_1 as e inner join salary_1 as s
+	on e.eid = s.employee_id
+	and s.ta >1000
+
+
+
+--
+select e.eid,e.email,e.fname,s.basic,s.hra,s.ta
+from employee_1 as e inner join salary_1 as s
+	on e.eid = s.employee_id
+order by e.eid desc
+
+
+
+select e.eid,e.email,e.fname,s.basic,s.hra,s.ta
+from employee_1 as e inner join salary_1 as s
+	on e.eid = s.employee_id
+WHERE E.fname LIKE '%A%'
+--
+select e.eid,e.email,e.fname,s.basic,s.hra,s.ta
+from employee_1 as e inner join salary_1 as s
+		on e.eid = s.employee_id
+	INNER JOIN department as d
+		on e.did = d.did 
+
+
+---cross join  : 2*3 = 6
+/*
+table:a
+1 a
+2 b
+table:b
+3 c 
+4 d
+
+output:
+1 a 3 c
+2 b 3 c
+1 a 4 d
+2 b 4 d
+
+*/
+select * from employee_1 ,salary_1
+
+
+--this can used as inner join , however this not recommended because this will decrease the peformance of query
+select * 
+from employee_1 ,salary_1
+where employee_1.eid = salary_1.employee_id
+
+
+--self join
+select * from emps
+
+--output
+--eid ename mgrid  mgrname 
+select e.eid , e.ename,e.mgrid, m.ename as mgrname
+from emps as e inner join emps as m
+on e.mgrid = m.eid 
+
+
+--subquery
+select profit from orders
+--show top highest profitable row
+select top 1 * from Orders order by Profit desc
+
+--show 3rd highest profitable row
+select top 1 * from 
+					(
+						select top 3 * from Orders order by Profit desc
+					) t
+order by profit asc 
+
+
+--show 4th lowest profitable row
+ select top 1 * from 
+					(
+						select top 4 * from Orders order by Profit asc
+					) t
+order by profit desc
+
+
+
+
+
+---view 
+create view v_emp
+as
+	select e.eid,e.email,e.fname,s.basic,s.hra,s.ta
+	from employee_1 as e inner join salary_1 as s
+		on e.eid = s.employee_id
+
+
+
+select * from v_emp 
+
+--will update
+update v_emp 
+set fname='nitisha'
+where eid= 21
+
+--will not work
+update v_emp 
+set fname='nitisha', ta =4444
+where eid= 21
+
+
+
