@@ -1,0 +1,143 @@
+MS SQL Server Overview
+SQL Command Type
+-DDL
+-DML
+-DQL
+-Where
+-Operator
+-like/pattern matching
+-Case When
+-Order by
+-Group by
+-Having
+-Aggregate function 
+-Data type
+-Consraints
+-identity
+-Function 
+	-date
+	-string
+	-maths.
+
+-keywords:
+	-top
+	-distinct
+	-into
+
+Today's Topic
+===========================
+Union 
+Join
+Subquery
+View 
+
+
+Union : is keyword which merge two or more than two tables vertically
+======================
+->Table structure should be same: datatype and column sequence 
+Example:
+	Emp: all active in this table
+	Emp_history: all inactive record in this table
+->we want to merge these table virtually and show as a single table
+
+There are following types of union:
+1. union 		: return all unique rows
+	table: a
+		1  a
+		2 b
+	table: b
+		3 c
+		1 d
+		2 b
+
+	ouput:
+		1 a
+		2 b
+		3 c
+		1 d 
+
+2. union all 		: return all rows
+	table: a
+		1  a
+		2  b
+	table: b
+		3 c
+		1 d
+		2 b
+	ouput:
+		1 a
+		2 b
+		3 c
+		1 d 
+		2 b	 
+
+Join : to merge two or more than two tables based on common column/attribute
+=============	
+->At least one column must be same in all sources
+->There are following types of join:
+1. inner join / equi join/ default join : return common or matching rows
+2. outer join /full outer join 		: return all rows from both tables	
+	a. left join 			: return all rows from left table and matching 
+
+from right table
+	b. right join 			: return all rows from right table and 
+
+matching from left table
+
+
+Other types of join:
+	1. cross join/cartisan product 
+	2. self join    : from between same table(make a two alias of same table)
+
+
+Subquery : is nested query (query inside query)
+==================
+
+
+View : is virtual table or wrapper over the table
+==============
+->view doesn't contain/store data physically
+->view contains only structure 
+->view can be used as physical table 
+->dml , ddl command can not be used within view
+->dml command can be used over the view 
+
+
+QQ
+===============
+1. wap show list of users whose bday is today
+2. wap to show list of users whose bday will come in next 5 days
+3. wap to show total show in current month 
+4. wap to show data data as per below sample example:
+	table: product
+	pid pname price
+	1   dove   33
+
+
+	table: transaction
+	tid  pid  tran_type quantity date
+	1    1     p		100  
+	2    1     s		30  
+	3    1 	   s 		10
+	4    2     p		300
+
+	output:
+	pid 	pname 	total_purchase  total_sale	available_in_stock
+	1	dove	100		40		60
+	..
+ 	
+
+**procedure
+**custom funtion
+**triger
+**T-SQL
+**Cursor
+**CTE
+**Temp table
+**Temp variable
+**Index				**
+**Performance
+**Security
+**Backup & Restore
+**Log shrinking
+**Replications
