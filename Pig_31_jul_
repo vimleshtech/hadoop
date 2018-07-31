@@ -1,0 +1,139 @@
+-load/read
+-dump
+
+---
+-filter
+	rel1 = load .....
+
+	rel2   = FILTER rel1 BY col1>0;
+	rel2   = FILTER rel1 BY (col1>0) AND (col2=='india');
+	rel2   = FILTER rel1 BY (col1>0) OR (col2=='india');			
+		
+-condition
+		>
+		>=
+		<
+		<=
+		==
+		!=		
+-show selected columns
+		out = FOREARCH rel1 generate  id,name,gender;
+		dump out;
+		
+		/* alias */
+		out = FOREARCH rel1 generate  id as empid,name,gender;			
+
+	
+-union 
+	relout = UNION rel1,rel2;
+		
+-order by
+		out = ORDER rel1 BY id ASC;
+
+- LIMIT 
+		out1 = ORDER rel1 BY sal desc;			
+		out2 = out1  limit 3;
+		out3 = order out2 by sal asc;
+		out4 = out3 limit 1;
+		
+			
+-group by	:
+		out = GROUP rel1 BY COL1;
+		out = GROUP rel1 BY ($0);	
+
+-join 
+		: 
+		self join:
+			rel1 = load 'hdfs:/a.txt'
+			rel2 = load 'hdfs:/a.txt'
+
+		out = JOIN rel1 by id , rel2 by id;  --self join 
+		out = JOIN rel1 by id,rel2 by id;		--INNER JOIN
+		out = JOIN rel1 by id LEFT OUTER,rel2 by id;	--LEFT JOIN	
+		out = JOIN rel1 by id RIGHT OUTER,rel2 by id;	--RIGHT JOIN	
+
+		out = JOIN rel1 by (id,dept) RIGHT OUTER,rel2 by (id,x);--RIGHT JOIN	
+		
+-function 
+		-TEXT
+		-AGG. 
+			MAX()
+			MIN()
+			COUNT()			: count null 
+			COUNT_STR()		: ignore null	
+			SUM()
+			AVG()
+		
+			
+		-MATHS:
+			SQRT()
+			POWER()
+			PI()
+			COS()
+			SIGN()
+			...
+		
+		out = FOREARCH rel1 generate  MAX(SAL);
+
+		out = FOREARCH rel1 generate  ID,UPPER(name);
+		out = FOREARCH rel1 generate  ID,UPPER(name),LOWER(address);	
+		out = FOREARCH rel1 generate  ID,LEN(name),LOWER(address);	
+	
+-udf 		: IN JAVA, PYTON
+		
+		myudf.py
+		-------------------
+		from pig_util import outputSchema
+
+		@outputSchema('a:int,n:chararray')
+		def get_len(strdata):
+			return len(strdata),'abb'
+		
+
+		@outputSchema('word:chararry')
+		def get_name(fn,ln):
+			fn =upper(fn)
+			ln = title(ln)	 # this is = This Is 		
+
+			return fn+'-'+ln
+		
+		@outputSchema('newsal:int')
+		def get_sal(hra,basic,da):
+				..
+				...
+				..
+				return total_sal
+				
+		
+		
+		-----
+		register 'myudf.py' using as udfs 
+		out = FOREARCH rel1 generate  udfs.get_sal(col1,col2,col3);
+
+
+-jobs & logs 
+		DUMP		:  return content /data 
+		DESCRIBE	:  return relational schema 
+		EXPLAIN		: 
+		ILLUSTRATE 
+		
+
+--pig script :
+	mypigfile.pig
+	---------------------
+	register 'myudf.py' using as udfs ;
+	re11 = load ........;
+
+	out = FOREARCH rel1 generate  udfs.get_sal(col1,col2,col3);	
+	dump out;
+
+
+
+--
+	run /mypigfile.pig
+	exec /mypigfile.pig
+				
+
+
+
+		
