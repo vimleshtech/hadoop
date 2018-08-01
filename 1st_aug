@@ -1,0 +1,86 @@
+home/abcd/pig_util.py
+home/abcd/myfunctions.py
+	@
+	def 	get_len(str):
+
+pwd:
+
+ home/abcd/
+pig:
+
+>>> REGISTER 'home/abcd/myfunctions.py' using jython as myfun;
+
+>>> rel  =  .....
+>>>  r = FOREACH rel GENERATE id,name, myfun.get_len(add);
+
+
+===
+sudo nano mypigscript.pig
+----
+REGISTER 'home/abcd/myfunctions.py' using jython as myfun;
+REGISTER 'home/abcd/taxcompute.py' using jython as taxlib;
+
+rel1 = load 'path' using pigs.... as (id:int,name:chararry,)
+rel2 = load.....
+filterrel = filter...
+
+
+....
+out = FOREACH  filterrel GENERATE name, col2,col2,myfun.convert(col3,col4),
+taxlib.get_tax(sal);
+
+
+DUMP out;
+
+python
+=====
+
+def get_data(rel):
+	rel[0]
+	rel[1]
+
+
+	for r in rel:
+		r[0] , r[1]  ...
+
+
+ 
+student_details = load ..
+student_group_all = Group student_details GENDER;
+
+out = FOREACH  student_group_all generate (student_details.fname,student_details.lame),
+	MAX(student_details.SAL)
+
+
+
+O  = distinct rel1;
+
+
+
+
+
+
+org.apache.pig.piggybank.evaluation.string
+https://pig.apache.org/docs/r0.17.0/api/org/apache/pig/piggybank/evaluation/string/LENGTH.html
+
+
+
+Consumer Key (API Key)	TL7RyLnfilYH6xaoAlS0XFDCg
+Consumer Secret (API Secret)	u5uBn4P62PMIxT4uwUVTl1Ycx4rsfByFs6jl2e4SQ9zDjPIzCO
+
+
+Access Token	919434545924935681-2woCDEXuXQdhJewDaCRBqHBYmi5SFDN
+Access Token Secret	T29jqUm6rZqsRYO7AGc47GlgYTaAaN5OtJD0DATo1uBjh
+
+
+module:
+=============
+pip install tweetpy 
+pip install textblob 
+
+
+
+
+
+
+
