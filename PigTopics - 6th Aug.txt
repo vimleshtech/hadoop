@@ -1,0 +1,51 @@
+PigyBank
+----
+https://pig.apache.org/docs/r0.17.0/api/org/apache/pig/piggybank/storage/package-summary.html
+
+dynamic invoker
+----------
+
+Dynamic Invokers
+Often you may need to use a simple function that is already provided by standard Java libraries, but for which a user defined functions (UDF) has not been written. Dynamic invokers allow you to refer to Java functions without having to wrap them in custom UDFs, at the cost of doing some Java reflection on every function call.
+
+...
+DEFINE UrlDecode InvokeForString('java.net.URLDecoder.decode', 'String String'); 
+encoded_strings = LOAD 'encoded_strings.txt' as (encoded:chararray); 
+decoded_strings = FOREACH encoded_strings GENERATE UrlDecode(encoded, 'UTF-8'); 
+...
+Currently, dynamic invokers can be used for any static function that:
+
+Accepts no arguments or accepts some combination of strings, ints, longs, doubles, floats, or arrays with these same types
+Returns a string, an int, a long, a double, or a float
+Only primitives can be used for numbers; no capital-letter numeric classes can be used as arguments. Depending on the return type, a specific kind of invoker must be used: InvokeForString, InvokeForInt, InvokeForLong, InvokeForDouble, or InvokeForFloat.
+
+
+
+- invoking a static method
+
+DEFINE StringToLong InvokeForLong('java.lang.Long.valueOf', 'String') ;
+
+longs = FOREACH strings GENERATE StringToLong(some_chararray);
+
+-- invoking a method on an object
+
+DEFINE StringConcat InvokeForString('java.lang.String.concat', 'String String', 'false') ;
+
+concatenations = FOREACH strings GENERATE StringConcat(str1, str2);
+
+
+
+FLATTEN
+-------------
+Sometimes you have data in a bag or a tuple and you want to remove that level of nesting.
+when you want to switch around your data on the fly and group by a particular field, you need a way to pull those entries out of the bag.
+As per Pig documentation:
+
+The FLATTEN operator looks like a UDF syntactically, but it is actually an operator that changes the structure of tuples and bags in a way that a UDF cannot. Flatten un-nests tuples as well as bags. The idea is the same, but the operation and result is different for each type of structure.
+
+
+Now, using the FLATTEN keyword:
+
+flatten_record = FOREACH tuple_record GENERATE FLATTEN(details);
+
+
