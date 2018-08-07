@@ -1,0 +1,11 @@
+For my Python people, you are not forgotten.
+
+pip install phoenixdb
+Here's a simple example usage:
+
+import phoenixdb
+database_url = 'http://server:8765/'
+conn = phoenixdb.connect(database_url, autocommit=True)
+cursor = conn.cursor()
+cursor.execute("SELECT * FROM tweets")
+print cursor.fetchall()
