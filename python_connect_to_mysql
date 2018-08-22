@@ -1,0 +1,26 @@
+import mysql.connector
+
+f = open(r'C:\Users\vkumar15\Desktop\customer.txt','r')
+#print(f.read())
+f.readline()
+
+#establish the connection 
+con = mysql.connector.connect(host="localhost",user="root",password="root",database="hrms_test")
+
+#connect sql statement with connection 
+cur = con.cursor()
+#cur.execute("insert into customer(cid,cname) values(1,'chahat')")
+
+for row in f.readlines():
+     col = row.split(',')
+     #"+col[0]+"
+     cur.execute("insert into customer(cid,cname) values("+col[0]+",'"+col[1].replace('\n','')+"')")
+
+
+con.commit()
+
+print('data is saved')
+
+
+
+
