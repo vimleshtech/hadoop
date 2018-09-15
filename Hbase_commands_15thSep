@@ -1,0 +1,99 @@
+$jps
+$cd $HADOOP_HOME/sbin
+$start-all.sh
+
+
+$cd /usr/local/HBase
+$./start-hbase.sh
+
+$cd bin
+$./hbase shell
+
+hbase...>list 		: show list of existing table
+hbase...>status	
+hbase...>version	: show installed version of hbase
+hbase ... > table_help  : show command/syntax for table create
+hbase.. > whoami  : show current user 
+hbase.. >  create 'emp', 'personal data', 'professional data'
+		Row key : is default column 
+hbase.. > list 
+hbase.. > disable ‘emp’
+hbase.. > is_disabled 'emp'
+hbase.. > enable ‘emp’
+hbase.. > is_enabled 'emp'
+hbase.. > scan 'emp'	: error will show if table is disabled
+
+
+hbase ..> disable_all
+hbase ..> enable_all
+
+
+hbase> disable_all 'hrms.*'
+hbase> enable_all 'r.*'
+
+
+hbase ..> alter 'emp', READONLY
+hbase ..> alter 'emp', WRITE
+
+--remove columns 
+hbase> alter ‘ table name ’, ‘delete’ ⇒ ‘ column family ’ 
+
+
+hbase ...> exists 'emp'
+
+*******
+hbase> drop_all ‘t.*’ 
+hbase> drop  ‘emp’
+
+ 
+
+hbase ... > put 'emp','1','personal data:name','raju'
+hbase ... > put 'emp','2','personal data:city','hyderabad'
+
+
+
+hbase ... > put 'emp','2',{'personal data:name','raju','personal 
+
+data:city','hyderabad'}
+
+{ "Personal":[  { "id":"1", "name":"Indranil", "Skill":"ETL" } ,
+		{ "id":"2", "name":"Joy", "Skill":"Reporting" }
+		]
+}
+
+
+hbase ..> put 'emp','2',{'personal data':[{'name':'abcd','city':'delhi},
+{'name':'abcd','city':'delhi},
+{'name':'abcd','city':'delhi},
+{'name':'abcd','city':'delhi}]}
+
+
+
+
+hbase ... > put 'emp','2','personal data:name','raju','personal 
+
+data:city','hyderabad','professionaldata:edu','mca'
+
+hbase .. > scan 'emp'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+http://localhost:60010
+
